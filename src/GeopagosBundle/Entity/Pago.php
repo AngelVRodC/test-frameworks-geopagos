@@ -3,6 +3,7 @@
 namespace GeopagosBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Pago
@@ -34,6 +35,12 @@ class Pago
      * @ORM\Column(name="fecha", type="datetime")
      */
     private $fecha;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Usuario")
+     * @ORM\JoinColumn(name="codigousuario", referencedColumnName="codigousuario")
+     */
+    private $usuario;      
 
 
     /**

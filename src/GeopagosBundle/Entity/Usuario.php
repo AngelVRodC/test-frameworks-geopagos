@@ -42,6 +42,39 @@ class Usuario
      */
     private $edad;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection|pagos[]
+     *
+     * @ORM\ManyToMany(targetEntity="Pago", inversedBy="usuario")
+     * @ORM\JoinTable(
+     *  name="usuariospagos",
+     *  joinColumns={
+     *      @ORM\JoinColumn(name="codigousuario", referencedColumnName="codigousuario")
+     *  },
+     *  inverseJoinColumns={
+     *      @ORM\JoinColumn(name="codigopago", referencedColumnName="codigopago")
+     *  }
+     * )
+     */
+    private $pagos;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection|usuarios[]
+     *
+     * @ORM\ManyToMany(targetEntity="Usuario")
+     * @ORM\JoinTable(
+     *  name="favoritos",
+     *  joinColumns={
+     *      @ORM\JoinColumn(name="codigousuario", referencedColumnName="codigousuario")
+     *  },
+     *  inverseJoinColumns={
+     *      @ORM\JoinColumn(name="codigousuariofavorito", referencedColumnName="codigousuario")
+     *  }
+     * )
+     */
+    private $favoritos;
+
+
 
     /**
      * Get id
