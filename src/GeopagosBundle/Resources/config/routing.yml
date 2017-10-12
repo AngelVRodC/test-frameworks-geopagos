@@ -1,0 +1,3 @@
+geopagos_homepage:
+    path:     /
+    defaults: { _controller: GeopagosBundle:Default:index }
