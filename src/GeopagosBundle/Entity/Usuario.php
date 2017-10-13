@@ -4,6 +4,7 @@ namespace GeopagosBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Usuario
@@ -13,6 +14,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Usuario
 {
+
+
+
     /**
      * @var int
      *
@@ -38,27 +42,25 @@ class Usuario
 
     /**
      * @var int
+     * @Assert\NotBlank()
      * @Assert\GreaterThan("18", message = "La edad debe ser mayor o igual a 18")    
      * 
      * @ORM\Column(name="edad", type="integer")
      */
     private $edad;
 
+
     /**
      * @var \Doctrine\Common\Collections\Collection|pagos[]
-     *
-     * @ORM\ManyToMany(targetEntity="Pago", inversedBy="usuario")
-     * @ORM\JoinTable(
-     *  name="usuariospagos",
-     *  joinColumns={
-     *      @ORM\JoinColumn(name="codigousuario", referencedColumnName="codigousuario")
-     *  },
-     *  inverseJoinColumns={
-     *      @ORM\JoinColumn(name="codigopago", referencedColumnName="codigopago")
-     *  }
-     * )
+     * @ORM\ManyToMany(targetEntity="Pago", mappedBy="usuarios")
      */
     private $pagos;
+
+    public function addPago(Pago $pago)
+    {
+        $pago->addUsuario($this);
+        $this->pagos[] = $pago;
+    }
 
     /**
      * @var \Doctrine\Common\Collections\Collection|usuarios[]
@@ -178,7 +180,6 @@ class Usuario
 
         return $this;
     }
-
 
     public function getPagos()
     {

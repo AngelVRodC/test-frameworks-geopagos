@@ -39,14 +39,28 @@ class Pago
      */
     private $fecha;
 
-    /**
-     * @Assert\NotBlank()
-     * @ORM\ManyToOne(targetEntity="Usuario")
-     * @ORM\JoinColumn(name="codigousuario", referencedColumnName="codigousuario")
-     * @Assert\NotBlank()
+     /**
+     * @var \Doctrine\Common\Collections\Collection|usuarios[]
+     *
+     * @ORM\ManyToMany(targetEntity="Usuario", inversedBy="pago")
+     * @ORM\JoinTable(
+     *  name="usuariospagos",
+     *  joinColumns={
+     *      @ORM\JoinColumn(name="codigopago", referencedColumnName="codigopago")
+     *  },
+     *  inverseJoinColumns={
+     *      @ORM\JoinColumn(name="codigousuario", referencedColumnName="codigousuario")
+     *  }
+     * )
      */
-    private $usuario;      
+     
+    protected $usuarios;
 
+    public function addUsuario(Usuario $usuario)
+    {
+        $usuario->addPago($this);
+        $this->usuarios[] = $usuario;
+    }
 
     /**
      * Get id
@@ -104,14 +118,14 @@ class Pago
         return $this->fecha;
     }
 
-    public function getUsuario()
+    public function getUsuarios()
     {
-        return $this->usuario;
+        return $this->usuarios;
     }
 
-    public function setUsuario($usuario)
+    public function setUsuarios($usuarios)
     {
-        $this->usuario = $usuario;
+        $this->usuarios = $usuarios;
 
         return $this;
     }  
