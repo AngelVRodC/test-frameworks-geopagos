@@ -43,7 +43,7 @@ class Usuario
     /**
      * @var int
      * @Assert\NotBlank()
-     * @Assert\GreaterThan("18", message = "La edad debe ser mayor o igual a 18")    
+     * @Assert\GreaterThan("17", message = "La edad debe ser mayor o igual a 18")    
      * 
      * @ORM\Column(name="edad", type="integer")
      */
