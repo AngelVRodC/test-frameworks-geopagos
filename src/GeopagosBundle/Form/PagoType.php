@@ -14,9 +14,13 @@ class PagoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('importe')->add('fecha')
-        ->add('usuario', EntityType::class,
-                    array('class' => 'GeopagosBundle:Usuario','choice_label' => 'usuario'));
+        $builder->add('importe','number', array('label' => false, 'attr' => array('class' => 'form-control','placeholder' => 'Importe')))
+        ->add('fecha')
+        ->add('usuarios', EntityType::class,
+                    array('class' => 'GeopagosBundle:Usuario','choice_label' => 'usuario','multiple' => true, 'expanded' => true,
+
+
+                        ));
     }
     
     /**

@@ -14,7 +14,9 @@ class UsuarioType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('usuario')->add('clave')->add('edad')/*->add('pagos')*/
+        $builder->add('usuario','text', array('label' => false, 'attr' => array('class' => 'form-control','placeholder' => 'Usuario')))
+                ->add('clave','text', array('label' => false, 'attr' => array('class' => 'form-control','placeholder' => 'Clave')))
+                ->add('edad','number', array('label' => false, 'attr' => array('class' => 'form-control','placeholder' => 'Edad')))/*->add('pagos')*/
                         ->add('favoritos', EntityType::class,
                     array('class' => 'GeopagosBundle:Usuario','choice_label' => 'usuario',/*'attr'=>array('style'=>'min-height:350px'),*/'multiple' => true, 'expanded' => true,
 
