@@ -1,0 +1,24 @@
+usuario_index:
+    path:     /
+    defaults: { _controller: "GeopagosBundle:Usuario:index" }
+    methods:  GET
+
+usuario_show:
+    path:     /{codigousuario}/show
+    defaults: { _controller: "GeopagosBundle:Usuario:show" }
+    methods:  GET
+
+usuario_new:
+    path:     /new
+    defaults: { _controller: "GeopagosBundle:Usuario:new" }
+    methods:  [GET, POST]
+
+usuario_edit:
+    path:     /{codigousuario}/edit
+    defaults: { _controller: "GeopagosBundle:Usuario:edit" }
+    methods:  [GET, POST]
+
+usuario_delete:
+    path:     /{codigousuario}/delete
+    defaults: { _controller: "GeopagosBundle:Usuario:delete" }
+    methods:  DELETE

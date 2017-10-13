@@ -3,6 +3,7 @@
 namespace GeopagosBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Usuario
@@ -23,7 +24,7 @@ class Usuario
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank()
      * @ORM\Column(name="usuario", type="string", length=50, unique=true)
      */
     private $usuario;
@@ -37,7 +38,8 @@ class Usuario
 
     /**
      * @var int
-     *
+     * @Assert\GreaterThan("18", message = "La edad debe ser mayor o igual a 18")    
+     * 
      * @ORM\Column(name="edad", type="integer")
      */
     private $edad;
@@ -154,4 +156,32 @@ class Usuario
     {
         return $this->edad;
     }
+
+
+
+    public function setFavoritos($favoritos)
+    {
+        $this->favoritos = $favoritos;
+
+        return $this;
+    }
+
+
+    public function getFavoritos()
+    {
+        return $this->favoritos;
+    }    
+
+    public function setPagos($pagos)
+    {
+        $this->pagos = $pagos;
+
+        return $this;
+    }
+
+
+    public function getPagos()
+    {
+        return $this->pagos;
+    }       
 }

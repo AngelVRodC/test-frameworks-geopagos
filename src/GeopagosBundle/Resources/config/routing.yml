@@ -1,3 +1,11 @@
+geopagos_usuario:
+    resource: "@GeopagosBundle/Resources/config/routing/usuario.yml"
+    prefix:   /usuario
+    
+geopagos_pago:                                                     
+    resource: "@GeopagosBundle/Resources/config/routing/pago.yml"  
+    prefix:   /pago                                                
+
 geopagos_homepage:
     path:     /
     defaults: { _controller: GeopagosBundle:Default:index }

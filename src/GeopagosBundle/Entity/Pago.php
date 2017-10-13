@@ -4,6 +4,7 @@ namespace GeopagosBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Pago
@@ -32,7 +33,8 @@ class Pago
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha", type="datetime")
+     * @Assert\GreaterThan("today", message = "La fecha debe ser mayor o igual a la fecha actual")     
+     * @ORM\Column(name="fecha", type="date")
      */
     private $fecha;
 
@@ -98,4 +100,16 @@ class Pago
     {
         return $this->fecha;
     }
+
+    public function getUsuario()
+    {
+        return $this->usuario;
+    }
+
+    public function setUsuario($usuario)
+    {
+        $this->usuario = $usuario;
+
+        return $this;
+    }  
 }
