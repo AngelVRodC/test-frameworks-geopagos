@@ -1,36 +1,80 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Ver Pago{% endblock %}
 {% block body %}
-    <h1>Pago</h1>
+    <div class="container">
+        <h1>Ver Pago</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <label>
+                    Codigo de Pago
+                </label>
+                <div>
+                    {{ pago.codigopago }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>
+                    Importe
+                </label>
+                <div>
+                    {{ pago.importe }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>
+                    Fecha
+                </label>
+                <div>
+                    {{ pago.fecha |date('d-m-Y') }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>
+                    Usuarios
+                </label>
+                {% if pago.usuarios is defined %}
+                {% for usuario in pago.usuarios %}
+                    <div>
+                        {{usuario.codigousuario}} - {{usuario.usuario}}
+                    </div>
+                {% endfor %}
+                {% endif %}                
+            </div>
+        </div>                
+        
+        <div class="row">
+            <div class="col-xs-4">
+                 <a href="{{ path('pago_index') }}">
+                        <div class="btn btn-primary"> Volver al Listado</div>
+                    </a>
+            </div>
+            <div class="col-xs-4">
+                <a href="{{ path('pago_edit', { 'codigopago': pago.codigopago }) }}">
+                        <div class="btn btn-success"> Editar</div>
+                    </a>
+            </div>
+            <div class="col-xs-4">
+                 {{ form_start(delete_form) }}
+                        <input class="btn btn-danger" type="submit" value="Eliminar">
+                    {{ form_end(delete_form) }}                                     
+             
+            </div>
+                   
+                    
+                   
+            
+        </div>
+ 
+    </div>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Codigopago</th>
-                <td>{{ pago.codigopago }}</td>
-            </tr>
-            <tr>
-                <th>Importe</th>
-                <td>{{ pago.importe }}</td>
-            </tr>
-            <tr>
-                <th>Fecha</th>
-                <td>{% if pago.fecha %}{{ pago.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('pago_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('pago_edit', { 'codigopago': pago.codigopago }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}
+
+
+

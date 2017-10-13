@@ -1,41 +1,64 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Listado de Pagos{% endblock %}
 {% block body %}
-    <h1>Pagos list</h1>
+    <div class="container">
+        <h1>Listado de Pagos</h1>
+        <div class="row">
+            <div class="col-md-12">
+                
+            
+                <div class="table-responsive">
+                    <table class="table" >
+                        <thead>
+                            <tr>
+                                <th>Codigopago</th>
+                                <th>Importe</th>
+                                <th>Fecha</th>
+                                <th>usuarios</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for pago in pagos %}
+                            <tr>
+                                <td>{{ pago.codigopago }}</td>
+                                <td>{{ pago.importe }}</td>
+                                <td>{{ pago.fecha|date('d-m-Y') }}</td>
+                                <td>
+                                    {% if pago.usuarios is defined %}
+                                    {% for usuario in pago.usuarios %}
+                                        <div>
+                                            {{usuario.codigousuario}} - {{usuario.usuario}}
+                                        </div>
+                                    {% endfor %}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <div>
+                                        <a href="{{ path('pago_show', { 'codigopago': pago.codigopago }) }}"><i class="glyphicon glyphicon-zoom-in"></i> Mostrar Detalles </a>
+                                    </div>
+                                    <div>
+                                        <a href="{{ path('pago_edit', { 'codigopago': pago.codigopago }) }}"><i class="glyphicon glyphicon-edit"></i> Editar</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="row">
+            <div class="col md-12 text-left">
+                 <a href="{{ path('pago_new') }}"><div type="button" class="btn btn-primary">Agregar Pago</div></a>
+            </div>
+            
+        </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Codigopago</th>
-                <th>Importe</th>
-                <th>Fecha</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for pago in pagos %}
-            <tr>
-                <td><a href="{{ path('pago_show', { 'codigopago': pago.codigopago }) }}">{{ pago.codigopago }}</a></td>
-                <td>{{ pago.importe }}</td>
-                <td>{% if pago.fecha %}{{ pago.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('pago_show', { 'codigopago': pago.codigopago }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('pago_edit', { 'codigopago': pago.codigopago }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('pago_new') }}">Create a new pago</a>
-        </li>
-    </ul>
+    </div>
 {% endblock %}
+
+

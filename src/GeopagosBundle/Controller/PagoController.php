@@ -39,6 +39,7 @@ class PagoController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
             $em->persist($pago);
             $em->flush();
 

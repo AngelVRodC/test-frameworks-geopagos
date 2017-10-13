@@ -1,1 +1,41 @@
-Hello World!
+{% extends 'base.html.twig' %}
+{% block title %}Home Page{% endblock %}
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<h1>Test GeoPagos:</h1>
+			</div>
+		</div>
+		
+		<br>
+		<br>
+		<div class="row">
+			<div class="col-xs-offset-2 col-xs-4 text-center">
+				<a href="{{ path('usuario_index') }}">
+					<div>
+						<i class="glyphicon home glyphicon-user"></i>
+						<div>	
+							<button type="button" class="btn btn-primary">Usuarios</button>
+						</div>
+					</div>
+				</a>			
+    			
+			</div>
+			<div class="col-xs-4 text-center">
+				<a href="{{ path('pago_index') }}">
+					<div>
+						<i class="glyphicon home glyphicon-list"></i>
+						<div>
+							<button type="button" class="btn  btn-primary">Pagos</button>
+						</div>
+						
+					</div>
+				</a>
+				
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+
+{% endblock %}

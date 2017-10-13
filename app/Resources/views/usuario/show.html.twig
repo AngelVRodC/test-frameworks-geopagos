@@ -1,40 +1,111 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Ver Usuario{% endblock %}
 {% block body %}
-    <h1>Usuario</h1>
+    <div class="container">
+        <h1>Ver Usuario</h1>
+        <div class="row">
+            <div class="col-md-12">
+                <label>
+                    Codigo de Usuario
+                </label>
+                <div>
+                    {{ usuario.codigousuario }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>
+                    Usuario
+                </label>
+                <div>
+                    {{ usuario.usuario }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>
+                    Clave
+                </label>
+                <div>
+                    {{ usuario.clave }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>
+                    Edad
+                </label>
+                <div>
+                    {{ usuario.edad }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <label>
+                    Favoritos
+                </label>
+                {% if usuario.favoritos is defined %}
+                {% for favorito in usuario.favoritos %}
+                    <div>
+                        {{favorito.codigousuario}} - {{favorito.usuario}}
+                    </div>
+                {% endfor %}
+                {% endif %}                
+            </div>
+        </div>      
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Codigousuario</th>
-                <td>{{ usuario.codigousuario }}</td>
-            </tr>
-            <tr>
-                <th>Usuario</th>
-                <td>{{ usuario.usuario }}</td>
-            </tr>
-            <tr>
-                <th>Clave</th>
-                <td>{{ usuario.clave }}</td>
-            </tr>
-            <tr>
-                <th>Edad</th>
-                <td>{{ usuario.edad }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="row">
+            <div class="col-md-12">
+                <label>
+                    Pagos 
+                    {% if usuario.pagos is defined %}
+                    {% for pago in usuario.pagos %}
+                        <div>
+                            Codigo de Pago: {{pago.codigopago}}
+                        </div>
+                        <div>
+                            Importe: {{pago.importe}}
+                        </div>
+                        <div>
+                            Fecha: {{pago.fecha|date('d-m-Y')}}
+                        </div> 
+                        <hr>                                               
+                    {% endfor %}
+                    {% endif %}                    
+                </label>
+            </div>
+        </div>            
+        
+        <div class="row">
+            <div class="col-xs-4">
+                 <a href="{{ path('usuario_index') }}">
+                        <div class="btn btn-primary"> Volver al Listado</div>
+                    </a>
+            </div>
+            <div class="col-xs-4">
+                <a href="{{ path('usuario_edit', { 'codigousuario': usuario.codigousuario }) }}">
+                        <div class="btn btn-success"> Editar</div>
+                    </a>
+            </div>
+            <div class="col-xs-4">
+                 {{ form_start(delete_form) }}
+                        <input class="btn btn-danger" type="submit" value="Eliminar">
+                    {{ form_end(delete_form) }}                                     
+             
+            </div>
+                   
+                    
+                   
+            
+        </div>
+ 
+    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('usuario_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('usuario_edit', { 'codigousuario': usuario.codigousuario }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+
 {% endblock %}
+
+

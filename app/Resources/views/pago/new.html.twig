@@ -1,16 +1,58 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Agregar Pago{% endblock %}
 {% block body %}
-    <h1>Pago creation</h1>
+    <div class="container">
+        <h1>Agregar Pago</h1>
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div class="form-group">
+                    <div>
+                        <label>Importe</label>
+                        <div class="text-danger">
+                            {{ form_errors(form.importe) }}
+                        </div>
+                    </div>
+                    {{ form_widget(form.importe) }}
+                </div>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+                <div class="form-group">
+                    <div>
+                        <label>Fecha</label>
+                        <div class="text-danger">
+                            {{ form_errors(form.fecha) }}
+                        </div>
+                    </div>
+                    {{ form_widget(form.fecha) }}
+                </div>      
+                
+                <div class="form-group">
+                    <div>
+                        <label>Usuarios</label>
+                    </div>
+                    {{ form_widget(form.usuarios) }}
+                </div>  
+                
+                
+            </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('pago_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                
+
+                
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <br>
+                    <input type="submit"  class="btn btn-primary" value="Agregar Pago" />
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}  
+ 
+    </div>
+
+
 {% endblock %}

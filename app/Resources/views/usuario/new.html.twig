@@ -1,16 +1,68 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Agregar Usuario{% endblock %}
 {% block body %}
-    <h1>Usuario creation</h1>
+    <div class="container">
+        <h1>Agregar Usuario</h1>
+        {{ form_start(form) }}
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div class="form-group">
+                    <div>
+                        <label>Usuario</label>
+                        <div class="text-danger">
+                            {{ form_errors(form.usuario) }}
+                        </div>
+                    </div>
+                    {{ form_widget(form.usuario) }}
+                </div>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+                <div class="form-group">
+                    <div>
+                        <label>Clave</label>
+                        <div class="text-danger">
+                            {{ form_errors(form.clave) }}
+                        </div>
+                    </div>
+                    {{ form_widget(form.clave) }}
+                </div>      
+                
+                <div class="form-group">
+                    <div>
+                        <label>Edad</label>
+                        <div class="text-danger">
+                            {{ form_errors(form.edad) }}
+                        </div>
+                    </div>
+                    {{ form_widget(form.edad) }}
+                </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('usuario_index') }}">Back to the list</a>
-        </li>
-    </ul>
+                <div class="form-group">
+                    <div>
+                        <label>Favoritos</label>
+                    </div>
+                    {{ form_widget(form.favoritos) }}
+                </div>  
+                
+                
+            </div>
+
+                
+
+                
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <br>
+                    <input type="submit"  class="btn btn-primary" value="Agregar Usuario" />
+                </div>
+            </div>
+        </div>
+        {{ form_end(form) }}  
+ 
+    </div>
+
+
 {% endblock %}

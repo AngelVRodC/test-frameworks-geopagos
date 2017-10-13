@@ -1,21 +1,68 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Editar Usuario{% endblock %}
 {% block body %}
-    <h1>Usuario edit</h1>
+    <div class="container">
+        <h1>Editar Usuario</h1>
+        {{ form_start(edit_form) }}
+        <div class="row">
+            <div class="col-md-12">
+                
+                <div class="form-group">
+                    <div>
+                        <label>Usuario</label>
+                        <div class="text-danger">
+                            {{ form_errors(edit_form.usuario) }}
+                        </div>
+                    </div>
+                    {{ form_widget(edit_form.usuario) }}
+                </div>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+                <div class="form-group">
+                    <div>
+                        <label>Clave</label>
+                        <div class="text-danger">
+                            {{ form_errors(edit_form.clave) }}
+                        </div>
+                    </div>
+                    {{ form_widget(edit_form.clave) }}
+                </div>      
+                
+                <div class="form-group">
+                    <div>
+                        <label>Edad</label>
+                        <div class="text-danger">
+                            {{ form_errors(edit_form.edad) }}
+                        </div>
+                    </div>
+                    {{ form_widget(edit_form.edad) }}
+                </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('usuario_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                <div class="form-group">
+                    <div>
+                        <label>Favoritos</label>
+                    </div>
+                    {{ form_widget(edit_form.favoritos) }}
+                </div>  
+                
+                
+            </div>
+
+                
+
+                
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <br>
+                    <input type="submit"  class="btn btn-primary" value="Editar Usuario" />
+                </div>
+            </div>
+        </div>
+        {{ form_end(edit_form) }}  
+ 
+    </div>
+
+
 {% endblock %}
