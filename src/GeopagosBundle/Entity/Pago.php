@@ -24,23 +24,26 @@ class Pago
     private $codigopago;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="importe", type="string", length=255)
+     * @var int
+     * @Assert\NotBlank()
+     * @Assert\GreaterThan("0", message = "El importe debe ser mayor a cero")  
+     * @ORM\Column(name="importe", type="integer")
      */
     private $importe;
 
     /**
      * @var \DateTime
-     *
+     * @Assert\NotBlank()
      * @Assert\GreaterThan("today", message = "La fecha debe ser mayor o igual a la fecha actual")     
      * @ORM\Column(name="fecha", type="date")
      */
     private $fecha;
 
     /**
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="Usuario")
      * @ORM\JoinColumn(name="codigousuario", referencedColumnName="codigousuario")
+     * @Assert\NotBlank()
      */
     private $usuario;      
 
